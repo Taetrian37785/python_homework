@@ -4,14 +4,13 @@ total_months= 0
 total_net = 0
 month_of_change= []  
 net_change_list= []
+#Empty brackets  to setup lists 
 greatest_increase = ["",0]
 greatest_decrease = ["",99999999999]
+#Large Range to determine min and max
 cvs_path = os.path.join("budget_data.csv")
 with open(cvs_path) as csvfile:
     csvreader = csv.reader(csvfile)
-
-    #print(csvreader)
-
 
     csv_header = next(csvreader)
     txt_path = os.path.join("Budget Information.txt")
@@ -22,7 +21,6 @@ with open(cvs_path) as csvfile:
     total_net += int(first_row[1])
     prev_net = int(first_row[1])
 
-    #minVal, maxVal = [], []
 
     for row in csvreader:
         total_months +=1
@@ -40,7 +38,7 @@ with open(cvs_path) as csvfile:
         if net_change < greatest_decrease[1]:
             greatest_decrease[0] = row[0]
             greatest_decrease[1] = net_change
-
+#If statements to help organize the min and max as well as attack the date. Help from Monali Patel in tutoring services. 
 net_monthly_avg = sum(net_change_list) / len(net_change_list)
 output = (
     f"Financial Analysis \n"
